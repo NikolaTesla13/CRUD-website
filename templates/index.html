@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Keep notes</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center;">Keep Notes</h1>
+
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task[1] }}</td>
+            <td>{{ task[2] }}</td>
+            <td>{{ task[0] }}</td>
+            <td>
+                <a href="/delete/{{task[0]}}">Delete</a>
+                <br>
+                <a href="/update/{{task[0]}}/{{task[1]}}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="/" method="POST">
+        <input type="text" name="content" id="content">
+        <input type="submit" value="Add Task">
+    </form>
+</div>
+{% endblock %}
